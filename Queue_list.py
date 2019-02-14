@@ -1,53 +1,46 @@
 """
 Реализация класса Queue (очередь, Fifo), элемент очереди реализован через элементы класса Node
 """
-class Node:
-
-    def __init__(self, v):
-        #Инициализация класса Node
-        self.value = v
-        self.next = None
 
 class Queue:
 
     def __init__(self):
         #Инициализация класса Queue
-        self.head = None
-        self.tail = None 
+        self.Queue_list=[] 
 
     def enqueue(self, item):
         # Добывление элемента в конец очереди 
-        if self.head is None:
-            self.head = item
-        else:
-            self.tail.next = item
-        self.tail = item
+        self.Queue_list.append(item)
 
     def dequeue(self):
         # Выдача элемента из головы списка
-        if self.head==0:
+        if len(self.Queue_list)==0:
             return None
-        else: 
-            node=self.head
-            self.head=node.next
-            return node
+        else:
+            Queue_element=self.Queue_list.pop(-len(self.Queue_list))
+            return Queue_element
 
     def size(self):
         # Метод определяет размер очереди
-        node=self.head
-        l=0
-        while node is not None:
-            l+=1
-            node=node.next
-        return l 
+        s=len(self.Queue_list)
+        return s 
     
     def print(self):
         #Печать очереди
-        node=self.head
-        while node!=None:
-            print(node.value,'output print all nodes')
-            node=node.next
+        s=len(self.Queue_list)
+        for i in range(0,s):
+            print(self.Queue_list[i],'output print all nodes')
+            s+=1
 
+S=Queue()
+for i in range(0,10):
+    S.enqueue(i**2)
+S.print()
+print("#####")
+for i in range(0,5):
+    S.dequeue()
+S.print()
+"""
 def circle_queue(N,M=0):
     # Ф-ция создает цикическую очередь. Параметр N кол-во элементов в очереди, M кол-во единиц сдвига. 
     a=Queue()
@@ -68,9 +61,8 @@ def circle_queue(N,M=0):
     a.print()
     print("-----")
 
-
-
 circle_queue(4,5)
+"""
 
 
 
